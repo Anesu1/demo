@@ -1,0 +1,29 @@
+import cn from 'clsx'
+import React, { FC } from 'react'
+
+interface ContainerProps {
+  className?: string
+  children?: any
+  el?: HTMLElement
+  clean?: boolean
+  style?: object
+}
+
+const Container: FC<ContainerProps> = ({
+  children,
+  className,
+  style,
+  el = 'div',
+  clean = false, // Full Width Screen
+}) => {
+  const rootClassName = cn(className, {
+    'mx-auto max-w-7xl px-6 w-full': !clean,
+  })
+
+  let Component: React.ComponentType<React.HTMLAttributes<HTMLDivElement>> =
+    el as any
+
+  return <Component className={rootClassName}>{children}</Component>
+}
+
+export default Container
